@@ -3,7 +3,8 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Modal from '../../components/UI/Modal/Modal'
-import OrderSummary from '../../components/Burger/OrderSummary/OrderSammary'
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSammary';
+import axios from '../../axios-orders';
 const INGREDIENT_PRICES = {
     salad: 0.5,
     cheese: 0.4,
@@ -66,8 +67,31 @@ class BurgerBuilder extends Component{
     purchaseCancelHandlar = ()=>{
         this.setState({purchasing:false})
     }
-    purchaseContinueHandler =()=>{
-        alert('You Continued')
+    purchaseContinueHandler = async()=>{
+        // alert('You Continued')
+        const order = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice.toFixed(2),
+            customer:{
+                name: 'Ayham Koutiney',
+                address:{
+                    street: 'TestStreet 1',
+                    zipCode: '3343TS',
+                    city: 'TestCity',
+                    province: 'TestProvince' 
+                },
+                email: 'test@test.com'
+            },
+            delveryMethod: 'fastest'
+        }
+        try{
+            const response = await axios.post('/orders.json',order);
+            console.log(response)
+        }catch(err){
+            console.log(err)
+        }
+       
+
     }
     render(){
         const disabledInfo ={
