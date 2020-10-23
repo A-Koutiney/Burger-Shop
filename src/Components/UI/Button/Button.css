@@ -22,3 +22,10 @@
 .Danger {
     color: #944317;
 }
+@media(max-width: 344px){
+    
+    .Button:first-of-type {
+        margin-left: 10px;
+        padding-left: 10px;
+    }
+}
