@@ -95,13 +95,13 @@ class BurgerBuilder extends Component{
             },
             delveryMethod: 'fastest'
         }
-        // try{
-        //     await axios.post('/orders.json',order);
-        //     this.setState({ loading: false, purchasing: false })
-        // }catch(err){
-        //     this.setState({loading: false,purchasing: false})
-        //     console.log(err)
-        // }
+        try{
+            await axios.post('/orders.json',order);
+            this.setState({ loading: false, purchasing: false })
+        }catch(err){
+            this.setState({loading: false,purchasing: false})
+            console.log(err)
+        }
        
 
     }
